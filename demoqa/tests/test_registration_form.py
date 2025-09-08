@@ -2,7 +2,7 @@ import allure
 from selene.support.shared import browser
 from demoqa.pages.registration_page import RegistrationPage
 from demoqa.users import UserData
-from demoqa.utils import attachments
+
 
 @allure.title("Успешное заполнение формы")
 def test_field_practice_form():
@@ -23,6 +23,9 @@ def test_field_practice_form():
 
     registration_page = RegistrationPage()
 
+    with allure.step("Открытие страницы с формой"):
+        browser.open("https://demoqa.com/automation-practice-form")
+
 
     with allure.step("Заполнение формы"):
         browser.execute_script("window.scrollBy(0, 500)")
@@ -35,9 +38,3 @@ def test_field_practice_form():
 
     with allure.step("Закрытие модального окна"):
         registration_page.button_close.click()
-
-
-    """Добавление аттачей к тесту"""
-    attachments.add_screenshot(browser)
-    attachments.add_logs(browser)
-    attachments.add_html(browser)

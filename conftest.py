@@ -8,9 +8,34 @@ from demoqa.utils import attachments
 def configuration_browser():
     browser.config.window_width = 1920
     browser.config.window_height = 1080
-    browser.open("https://demoqa.com/automation-practice-form")
     browser.config.timeout = 10
 
     yield
+
+
+@pytest.fixture(scope="function", autouse=True)
+def setup_browser():
+    options = Options()
+    selenoid_capabilities = {
+        "browserName": "chrome",
+        "browserVersion": "128.0",
+        "selenoid:options": {
+            "enableVNC": True,
+            "enableVideo": True
+        }
+    }
+    options.capabilities.update(selenoid_capabilities)
+    driver = webdriver.Remote(
+        command_executor=f"https://user1:1234@selenoid.autotests.cloud/wd/hub",
+        options=options
+    )
+    browser.config.driver = driver
+
+    yield browser
+
+    """Добавление аттачей к тесту"""
+    attachments.add_screenshot(browser)
+    attachments.add_logs(browser)
+    attachments.add_html(browser)
 
     browser.quit()
