@@ -33,9 +33,12 @@ def setup_browser():
 
     yield browser
 
+
     """Добавление аттачей к тесту"""
     attachments.add_screenshot(browser)
     attachments.add_logs(browser)
     attachments.add_html(browser)
+    attachments.add_video(browser)
+
 
     browser.quit()
