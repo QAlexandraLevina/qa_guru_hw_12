@@ -18,3 +18,9 @@ def add_logs(browser):
 def add_html(browser):
     html = browser.driver.page_source
     allure.attach(html, "page_source", AttachmentType.HTML, ".html")
+
+
+def add_video(browser):
+    video_url = f"https://selenoid.autotests.cloud/video/{browser.driver.session_id}.mp4"
+    html =f"<html><body><video width='100%' height='100%' controls autoplay><source src='{video_url}' type='video/mp4'></video></body></html>"
+    allure.attach(video_url, f"video{browser.driver.session_id}", AttachmentType.HTML, ".html")
