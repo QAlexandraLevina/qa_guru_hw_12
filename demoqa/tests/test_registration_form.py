@@ -5,7 +5,7 @@ from demoqa.users import UserData
 
 
 @allure.title("Успешное заполнение формы")
-def test_field_practice_form():
+def test_field_practice_form(setup_browser):
     """Инициализация экземпляров класса RegistrationPage и UserData"""
     alexandra = UserData(
         "Alexandra",
