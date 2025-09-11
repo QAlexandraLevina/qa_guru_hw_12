@@ -1,11 +1,13 @@
 import allure
-from selene.support.shared import browser
 from demoqa.pages.registration_page import RegistrationPage
 from demoqa.users import UserData
 
 
 @allure.title("Успешное заполнение формы")
 def test_field_practice_form(setup_browser):
+    """Передача кастомного браузера из фикстуры в conftest"""
+    browser = setup_browser
+
     """Инициализация экземпляров класса RegistrationPage и UserData"""
     alexandra = UserData(
         "Alexandra",
