@@ -3,3 +3,4 @@ selene==2.0.0rc9
 allure-python-commons==2.15.0
 allure-pytest==2.15.0
 selenium==4.35.0
+python-dotenv==0.21.1
