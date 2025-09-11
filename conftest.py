@@ -5,6 +5,7 @@ from selenium.webdriver.chrome.options import Options
 from demoqa.utils import attachments
 
 
+DEFAULT_BROWSER_VERSION = "128.0"
 def pytest_addoption(parser):
     """Настройка параметров для браузера"""
     parser.addoption(
@@ -17,6 +18,7 @@ def pytest_addoption(parser):
 def setup_browser(request):
     """Получение информации о значении параметра browser из командной строки"""
     browser_version = request.config.getoption('--browser_version')
+    browser_version = browser_version if browser_version != "" else DEFAULT_BROWSER_VERSION
 
     """Настройка драйвера"""
     options = Options()
